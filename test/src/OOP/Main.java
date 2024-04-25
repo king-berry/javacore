@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
 
         Car myCar = new Car();
-//        myCar.brand = "big one";    brand bị private
+//      myCar.brand = "big one";    brand bị private
         myCar.color = "red";
 
         Cat myCat = new Cat();
@@ -12,11 +12,18 @@ public class Main {
         Dog myDog = new Dog();
         myDog.bark();
 
-
-
         Calculate calculate = new Calculate();
+
         calculate.shape(3,4);
+        double Area = calculate.caculateArea();
+        if(Area != -1){
+            System.out.println( "caculate area: "+Area);
+        }
         calculate.shape(2);
+        double area = calculate.caculateArea();
+        if(area != -1){
+            System.out.println( "caculate area: "+area);
+        }
     }
 }
 class Car {
@@ -29,15 +36,17 @@ class Car {
     }
 }
 
-
-
 class Animal {
+    protected int i =1;
     public void sound() {
         System.out.println("noise");
     }
 }
 
 class Cat extends Animal {
+    void getValueFromParent(){
+        int value = super.i;
+    }
     @Override
     public void sound() {
         System.out.println("mew");
@@ -50,11 +59,18 @@ class Dog {
     }
 }
 
-
-class MyClassHaveContructor {
+class contructorClass {
     private int x;
 
-    public MyClassHaveContructor(int x) {
+    public contructorClass(int x) {
+        this.x = x;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x){
         this.x = x;
     }
 
@@ -97,11 +113,10 @@ class hinhhoc extends Shape{
     }
 }
 
-
 class Calculate {
-    private int side;
-    private int width;
-    private int length;
+    private double side;
+    private double width;
+    private double length;
 
 
     public void shape(int side) {
@@ -112,5 +127,30 @@ class Calculate {
         this.length = length;
         this.width = width;
     }
+
+    public double caculateArea(){
+        if (side > 0){
+            return side *side;
+        } else if (width >0 && length>0) {
+            return width*length;
+        }else{
+            return -1;
+        }
+    }
 }
+
+class testForSuper{
+    protected int i = 1;
+}
+
+class testForSuper1 extends testForSuper{
+    protected int i = 2;
+}
+
+class testForSuper2 extends testForSuper1{
+    void getValueFromParent(){
+        int value = super.i;
+    }
+}
+
 
